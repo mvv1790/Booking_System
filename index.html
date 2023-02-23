@@ -10,6 +10,27 @@
     <title>Document</title>
 </head>
 <body>
-    
+    <main>
+        <section>
+        <form action="submit_form.php" method="p">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="emai" name="email" required>
+
+            <label for="age">Age:</label>
+            <input type="number" id="age" name="age" required>
+
+            <label for="band_name">Band's Name:</label>
+            <input type="text" name="band_name" id="band_name">
+
+            <label for="message">Message:</label>
+            <textarea name="message" id="message" cols="30" rows="10"></textarea>
+
+            <input type="submit" value="Submit">
+        </form>
+        </section>
+    </main>
 </body>
 </html>
