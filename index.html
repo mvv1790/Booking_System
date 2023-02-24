@@ -11,16 +11,16 @@
 </head>
 <body>
     <main>
-        <section>
-        <form action="submit_form.php" method="p">
+        <section id="submit_section">
+        <form action="submit_form.php" name="formSection" onsubmit="return validateForm()" action="/submit" method="POST">
             <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
+            <input type="text" id="name" name="name" >
             
             <label for="email">Email:</label>
-            <input type="email" id="emai" name="email" required>
+            <input type="email" id="emai" name="email" >
 
             <label for="age">Age:</label>
-            <input type="number" id="age" name="age" required>
+            <input type="number" id="age" name="age" >
 
             <label for="band_name">Band's Name:</label>
             <input type="text" name="band_name" id="band_name">
