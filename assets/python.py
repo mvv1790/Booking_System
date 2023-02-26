@@ -8,3 +8,11 @@ def submit_form(request):
         return render(request, 'success.html')
     else:
             return render(request, 'form.html')
+
+from django.urls import path
+from . import views
+
+
+urlpatterns = [
+    path('', views.submit_form, name='submit_form')
+]
