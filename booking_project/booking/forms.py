@@ -1,7 +1,8 @@
-from django import froms
+# booking/forms.py
+from django import forms
 from .models import Booking
 
-class BookingForm(froms.ModelForm):
+class BookingForm(forms.ModelForm):
     class Meta:
         model = Booking
-        fields = ['name', 'band name', 'date', 'time']
+        fields = ['name', 'date', 'time']
