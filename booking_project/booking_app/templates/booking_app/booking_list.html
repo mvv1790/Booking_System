@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Booking List</title>
+</head>
+<body>
+    <h2>Booking List</h2>
+    <ul>
+        {% for booking in bookings %}
+            <li>{{ booking.name }} - {{ booking.date }} {{ booking.time }}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'book_slot' %}">Book a Slot</a>
+</body>
+</html>
