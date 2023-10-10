@@ -11,36 +11,47 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
     
     <style>
+        /* Global Styles */
         body {
-            background-color: #f8f9fa;
+            background-color: #f8f9fa; /* Light Grey */
+            font-family: Arial, sans-serif; /* Use a more neutral font */
+            color: #6c757d; /* Dark Grey for text */
         }
-
+    
+        /* Container Styles */
         .container {
             margin-top: 50px;
+            background-color: #ffffff; /* White */
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* subtle shadow for depth */
         }
-
+    
         h2 {
-            color: #007bff;
+            color: #6c757d; /* Dark Grey */
         }
-
-        form {
-            margin-top: 20px;
+    
+        /* List Group Styles */
+        .list-group-item {
+            background-color: #f8f9fa; /* Light Grey */
+            border: 1px solid #dee2e6; /* Slightly darker grey for the border */
+            margin-top: 5px;
         }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
+    
+        /* Button Styles */
         .btn-primary {
-            background-color: #007bff;
-            border-color: #007bff;
+            background-color: #6c757d; /* Dark Grey */
+            border-color: #6c757d;
+            color: #ffffff; /* White text */
         }
-
-        .btn-primary:hover {
-            background-color: #0056b3;
-            border-color: #0056b3;
+    
+        .btn-primary:hover, .btn-primary:focus {
+            background-color: #5a6268; /* Even darker grey for hover state */
+            border-color: #5a6268;
+            color: #ffffff; /* Keep text color white */
         }
     </style>
+    
 </head>
 <body>
     
