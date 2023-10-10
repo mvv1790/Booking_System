@@ -68,8 +68,10 @@
 
             <!-- Calendar Days -->
             {% for day in days_range %}
-            <div class="calendar-day {% if day in booked_days %}booked{% endif %}">{{ day }}</div>
+            <div class="calendar-day {% if day in booked_map %}booked{% endif %}" 
+                title="{% if day in booked_map %}{{ booked_map.day }}{% endif %}">{{ day }}</div>
             {% endfor %}
+
         </div>
     </div>
 

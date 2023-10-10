@@ -43,13 +43,12 @@ def calendar_view(request):
     # Generating days_range for the month
     days_range = [(start_month + timedelta(days=i)).day for i in range((end_month - start_month).days + 1)]
 
-    # Fetch booked days from the database:
-    booked_dates = Booking.objects.filter(date__gte=start_month, date__lte=end_month).values_list('date', flat=True)
-    booked_days = [d.day for d in booked_dates]
+    # Fetch booked names for days from the database:
+    bookings = Booking.objects.filter(date__gte=start_month, date__lte=end_month)
+    booked_map = {b.date.day: b.name for b in bookings}
 
     context = {
         'days_range': days_range,
-        'booked_days': booked_days,
+        'booked_map': booked_map,
     }
-
     return render(request, 'booking_app/calendar.html', context)
