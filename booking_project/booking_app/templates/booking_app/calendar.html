@@ -1,15 +1,36 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booked Slots Calendar</title>
+    
+    <!-- Link to Bootstrap CSS -->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+
     <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        h1 {
+            color: #007bff;
+            text-align: center;
+            margin-top: 30px;
+        }
+
         /* Calendar Styles */
         .calendar {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
             gap: 8px;
+            margin-top: 30px;
         }
 
         .calendar-header, .calendar-day {
@@ -17,12 +38,13 @@
             justify-content: center;
             align-items: center;
             height: 40px;
-            border: 1px solid #ccc;
+            border: 1px solid #dee2e6;
+            background-color: #ffffff;
             padding: 4px;
         }
 
         .booked {
-            background-color: #E57373;
+            background-color: #007bff;
             color: #fff;
         }
     </style>
@@ -31,36 +53,37 @@
 
     {% include 'navbar.html' %}
 
-    <h1>Booked Slots Calendar</h1>
+    <div class="container">
+        <h1>Booked Slots Calendar</h1>
 
-    <div class="calendar">
-        <!-- Calendar Header -->
-        <div class="calendar-header">Sun</div>
-        <div class="calendar-header">Mon</div>
-        <div class="calendar-header">Tue</div>
-        <div class="calendar-header">Wed</div>
-        <div class="calendar-header">Thu</div>
-        <div class="calendar-header">Fri</div>
-        <div class="calendar-header">Sat</div>
+        <div class="calendar">
+            <!-- Calendar Header -->
+            <div class="calendar-header">Sun</div>
+            <div class="calendar-header">Mon</div>
+            <div class="calendar-header">Tue</div>
+            <div class="calendar-header">Wed</div>
+            <div class="calendar-header">Thu</div>
+            <div class="calendar-header">Fri</div>
+            <div class="calendar-header">Sat</div>
 
-        <!-- Calendar Days (Static for October as an example) -->
-        {% for day in days_range %}
-        <div class="calendar-day {% if day in booked_days %}booked{% endif %}">{{ day }}</div>
-        {% endfor %}
-    
+            <!-- Calendar Days -->
+            {% for day in days_range %}
+            <div class="calendar-day {% if day in booked_days %}booked{% endif %}">{{ day }}</div>
+            {% endfor %}
+        </div>
     </div>
 
     <script>
         // Example JavaScript to fetch booked days from the server and highlight them
-        // This assumes an endpoint that returns booked days as a list [1, 5, 12, ...]
         fetch('/get_booked_days/')
             .then(response => response.json())
             .then(bookedDays => {
-                bookedDays.forEach(day => {
-                    // Logic to highlight the booked day on the calendar
-                });
+                // ... (Your existing logic here)
             });
     </script>
 
+    <!-- Link to Bootstrap JS (optional, only if you need Bootstrap JavaScript features) -->
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>
+
