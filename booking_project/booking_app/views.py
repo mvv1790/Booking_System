@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from .forms import BookingForm
 from .models import Booking
 
@@ -15,3 +16,7 @@ def book_slot(request):
     else:
         form = BookingForm()
     return render(request, 'booking_app/book_slot.html', {'form': form})
+
+def get_booked_slots(request):
+    booked_slots = Booking.objects.all().values('id', 'title', 'start', 'end')
+    return JsonResponse(list(booked_slots), safe=False)
