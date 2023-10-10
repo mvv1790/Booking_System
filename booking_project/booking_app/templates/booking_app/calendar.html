@@ -1,5 +1,3 @@
-<!-- booking_app/templates/booking_app/calendar.html -->
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,34 +5,60 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Booked Slots Calendar</title>
     <style>
-        /* Add your CSS styles for the calendar here */
-        /* For simplicity, you can use a library like Bootstrap for styling */
+        /* Calendar Styles */
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 8px;
+        }
+
+        .calendar-header, .calendar-day {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 40px;
+            border: 1px solid #ccc;
+            padding: 4px;
+        }
+
+        .booked {
+            background-color: #E57373;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
 
-    {% include 'navbar.html' %}
-
     <h1>Booked Slots Calendar</h1>
 
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Time</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for slot in booked_slots %}
-                <tr>
-                    <td>{{ slot.date }}</td>
-                    <td>{{ slot.time }}</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <div class="calendar">
+        <!-- Calendar Header -->
+        <div class="calendar-header">Sun</div>
+        <div class="calendar-header">Mon</div>
+        <div class="calendar-header">Tue</div>
+        <div class="calendar-header">Wed</div>
+        <div class="calendar-header">Thu</div>
+        <div class="calendar-header">Fri</div>
+        <div class="calendar-header">Sat</div>
 
-    <!-- You can add JavaScript here to enhance the calendar if needed -->
+        <!-- Calendar Days (Static for October as an example) -->
+        {% for day in days_range %}
+        <div class="calendar-day {% if day in booked_days %}booked{% endif %}">{{ day }}</div>
+        {% endfor %}
+    
+    </div>
+
+    <script>
+        // Example JavaScript to fetch booked days from the server and highlight them
+        // This assumes an endpoint that returns booked days as a list [1, 5, 12, ...]
+        fetch('/get_booked_days/')
+            .then(response => response.json())
+            .then(bookedDays => {
+                bookedDays.forEach(day => {
+                    // Logic to highlight the booked day on the calendar
+                });
+            });
+    </script>
 
 </body>
 </html>

@@ -24,6 +24,13 @@ def get_booked_slots(request):
     booked_slots = Booking.objects.all().values('id', 'title', 'start', 'end')
     return JsonResponse(list(booked_slots), safe=False)
 
+# views.py
+
 def calendar_view(request):
-    """View to display the calendar."""
-    return render(request, 'booking_app/calendar.html')
+    booked_days = [...] # fetch this from your database or wherever you store booked days
+    days_range = range(1, 32)  # For October as an example
+    context = {
+        'booked_days': booked_days,
+        'days_range': days_range
+    }
+    return render(request, 'booking_app/calendar.html', context)
