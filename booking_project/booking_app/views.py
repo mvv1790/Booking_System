@@ -22,5 +22,13 @@ def get_booked_slots(request):
     return JsonResponse(list(booked_slots), safe=False)
 
 def calendar_view(request):
-    booked_slots = Booking.objects.all()  # Adjust this query based on your model structure
+    booked_slots = Booking.objects.all() 
     return render(request, 'calendar.html')
+
+def book_slot_view(request):
+    booked_slots = Booking.objects.all() 
+    return render(request, 'book_slot.html')
+
+def booking_list_view(request):
+    booked_slots = Booking.objects.all() 
+    return render(request, 'booking_list.html')
