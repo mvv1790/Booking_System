@@ -1,0 +1,37 @@
+<!-- booking_app/templates/booking_app/calendar.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booked Slots Calendar</title>
+    <style>
+        /* Add your CSS styles for the calendar here */
+        /* For simplicity, you can use a library like Bootstrap for styling */
+    </style>
+</head>
+<body>
+    <h1>Booked Slots Calendar</h1>
+
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Time</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for slot in booked_slots %}
+                <tr>
+                    <td>{{ slot.date }}</td>
+                    <td>{{ slot.time }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- You can add JavaScript here to enhance the calendar if needed -->
+
+</body>
+</html>

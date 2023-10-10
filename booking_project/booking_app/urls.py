@@ -6,5 +6,6 @@ from .views import booking_list, book_slot, get_booked_slots
 urlpatterns = [
     path('', booking_list, name='booking_list'),
     path('book_slot/', book_slot, name='book_slot'),
-    path('get_booked_slots/', get_booked_slots, name='get_booked_slots')
+    path('get_booked_slots/', get_booked_slots, name='get_booked_slots'),
+    path('calendar/', calendar_view, name='calendar'),
 ]
