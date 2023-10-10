@@ -6,7 +6,7 @@ class BookingForm(forms.ModelForm):
         model = Booking
         fields = ['name', 'email', 'phone', 'date', 'time']
 
-    def __init__(self, *args, *kwargs):
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         # Make phone field optional
         self.fields['phone'].required = False
