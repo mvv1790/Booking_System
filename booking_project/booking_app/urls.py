@@ -2,6 +2,7 @@
 
 from django.urls import path
 from .views import booking_list, book_slot, get_booked_slots
+from .views import calendar_view
 
 urlpatterns = [
     path('', booking_list, name='booking_list'),

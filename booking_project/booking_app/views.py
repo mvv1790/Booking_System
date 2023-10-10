@@ -23,4 +23,4 @@ def get_booked_slots(request):
 
 def calendar_view(request):
     booked_slots = Booking.objects.all()  # Adjust this query based on your model structure
-    return render(request, 'booking_app/calendar.html', {'booked_slots': booked_slots})
+    return render(request, 'calendar.html')
