@@ -1,4 +1,5 @@
 from datetime import datetime
+
 from django.db import models
 
 class Booking(models.Model):
@@ -11,17 +12,16 @@ class Booking(models.Model):
     def __str__(self):
         return f"{self.name} - {self.date} {self.time}"
 
-    @property 
+    @property
     def title(self):
         return self.name
 
-    @property 
+    @property
     def start(self):
         return f"{self.date}T{self.time}"
 
-    
-    @property 
+    @property
     def end(self):
-        end_time = (datetime.datetime.combine(self.date, slef.time)+ datetime.timedelta(hours=1)).time()
-        return f"{self.date}T{end.time}"
-    
+        
+        end_time = (datetime.datetime.combine(self.date, self.time) + datetime.timedelta(hours=1)).time()
+        return f"{self.date}T{end_time}"
