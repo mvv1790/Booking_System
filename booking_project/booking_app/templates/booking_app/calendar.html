@@ -9,6 +9,11 @@
     
     <!-- Link to Bootstrap CSS -->
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.10.2/fullcalendar.min.js"></script>
 
     <style>
         body {
@@ -20,7 +25,7 @@
         }
 
         h1 {
-            color: #007bff;
+            color: #6c757d; /* Dark Grey for text */
             text-align: center;
             margin-top: 30px;
         }
@@ -47,6 +52,11 @@
             background-color: #FFCCCC;  /* Light Red */
             color: #fff;  /* White text */
         }
+        .my-class {
+            -moz-column-gap: 20px;
+            column-gap: 20px;
+        }
+
     </style>
 </head>
 <body>
@@ -69,23 +79,53 @@
             <!-- Calendar Days -->
             {% for day in days_range %}
             <div class="calendar-day {% if day in booked_map %}booked{% endif %}" 
-                title="{% if day in booked_map %}{{ booked_map.day }}{% endif %}">{{ day }}</div>
+                 title="{% if day in booked_map %}{{ booked_map.day }}{% endif %}">{{ day }}</div>
             {% endfor %}
 
         </div>
     </div>
 
     <script>
+        
         // Example JavaScript to fetch booked days from the server and highlight them
         fetch('/get_booked_days/')
             .then(response => response.json())
             .then(bookedDays => {
                 // ... (Your existing logic here)
             });
+
+            document.addEventListener('DOMContentLoaded', function() {
+                var calendarEl = document.getElementById('calendar');
+
+
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        events: '/get_booked_slots/',
+        initialView: 'timeGridWeek',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'timeGridWeek, timeGridDay'
+        },
+        eventRender: function(info) {
+        $(info.el).tooltip({
+            title: info.event.title,
+            placement: 'top',
+            trigger: 'hover',
+            container: 'body'
+        });
+        }
+
+    });
+
+    calendar.render();
+});
+
     </script>
 
     <!-- Link Bootstrap JS  -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
 </body>
 </html>
+
+
 

@@ -1,9 +1,9 @@
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
+from calendar import monthrange
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
 from .forms import BookingForm
 from .models import Booking
-from booking_app.models import Booking
 
 def booking_list(request):
     """View to display all bookings."""
@@ -27,18 +27,19 @@ def get_booked_slots(request):
     data = [{
         "title": booking.name,
         "start": f"{booking.date}T{booking.time}",
-        "end": f"{booking.date}T{(datetime.datetime.combine(datetime.date(1,1,1), booking.time) + datetime.timedelta(hours=1)).time()}"
+        "end": (datetime.combine(booking.date, booking.time) + timedelta(hours=1)).strftime("%Y-%m-%dT%H:%M:%S")
     } for booking in bookings]
 
     return JsonResponse(data, safe=False)
-
-# views.py
 
 def calendar_view(request):
     # Let's assume you want to show the current month:
     today = date.today()
     start_month = date(today.year, today.month, 1)
-    end_month = date(today.year, today.month + 1, 1) - timedelta(days=1)
+    
+    # Handling month overflow for end_month calculation
+    _, last_day = monthrange(today.year, today.month)
+    end_month = date(today.year, today.month, last_day)
 
     # Generating days_range for the month
     days_range = [(start_month + timedelta(days=i)).day for i in range((end_month - start_month).days + 1)]
