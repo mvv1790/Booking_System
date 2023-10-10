@@ -4,10 +4,12 @@ from .forms import BookingForm
 from .models import Booking
 
 def booking_list(request):
+    """View to display all bookings."""
     bookings = Booking.objects.all()
     return render(request, 'booking_app/booking_list.html', {'bookings': bookings})
 
 def book_slot(request):
+    """View to create a new booking."""
     if request.method == 'POST':
         form = BookingForm(request.POST)
         if form.is_valid():
@@ -18,17 +20,10 @@ def book_slot(request):
     return render(request, 'booking_app/book_slot.html', {'form': form})
 
 def get_booked_slots(request):
+    """View to return all booked slots in JSON format."""
     booked_slots = Booking.objects.all().values('id', 'title', 'start', 'end')
     return JsonResponse(list(booked_slots), safe=False)
 
 def calendar_view(request):
-    booked_slots = Booking.objects.all() 
-    return render(request, 'calendar.html')
-
-def book_slot_view(request):
-    booked_slots = Booking.objects.all() 
-    return render(request, 'book_slot.html')
-
-def booking_list_view(request):
-    booked_slots = Booking.objects.all() 
-    return render(request, 'booking_list.html')
+    """View to display the calendar."""
+    return render(request, 'booking_app/calendar.html')
