@@ -20,7 +20,7 @@ jobs:
         python-version: 3.x  # Replace 'x' with your desired Python version
 
     - name: Activate virtual environment
-      run: source /workspace/Booking_System/booking_project/venv/bin/activate
+      run: source booking_project/venv/bin/activate
 
     - name: Install dependencies
       run: pip install -r requirements.txt  # Replace with your actual dependency installation command
