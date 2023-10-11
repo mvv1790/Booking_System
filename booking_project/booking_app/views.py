@@ -53,3 +53,22 @@ def calendar_view(request):
         'booked_map': booked_map,
     }
     return render(request, 'booking_app/calendar.html', context)
+
+def get_booked_slots_for_year(request):
+    # Calculate the start and end dates for the whole year
+    year_start = date.today().replace(month=1, day=1)
+    year_end = date.today().replace(month=12, day=31)
+
+    # Fetch booked slots for the whole year
+    booked_slots = Booking.objects.filter(start__gte=year_start, end__lte=year_end)
+
+    # Serialize the booked slots data
+    serialized_slots = []
+    for slot in booked_slots:
+        serialized_slots.append({
+            'title': slot.title,
+            'start': slot.start.isoformat(),
+            'end': slot.end.isoformat(),
+        })
+
+    return JsonResponse(serialized_slots, safe=False)
