@@ -1,0 +1,29 @@
+name: Python CI
+
+on:
+  push:
+    branches:
+      - main  # Change this to the branch you want to trigger the workflow on
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.x  # Replace 'x' with your desired Python version
+
+    - name: Activate virtual environment
+      run: source booking_project/venv/bin/activate
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt  # Replace with your actual dependency installation command
+
+    - name: Run tests
+      run: python -m unittest discover  # Replace with your test command
